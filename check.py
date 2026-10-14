@@ -41,7 +41,14 @@ def kirim(s):
         timeout=15,
     )
 
-r = requests.get(SIGNAL_URL, headers={"User-Agent": "Mozilla/5.0"}, timeout=20)
+HEADERS = {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36",
+    "Accept": "application/json, text/plain, */*",
+    "Accept-Language": "en-US,en;q=0.9",
+    "Origin": "https://cryptospike.biz.id",
+    "Referer": "https://cryptospike.biz.id/SIGNAL",
+}
+r = requests.get(SIGNAL_URL, headers=HEADERS, timeout=20)
 r.raise_for_status()
 sinyal = cari_sinyal(r.json())
 ids = {str(s["id"]) for s in sinyal}
